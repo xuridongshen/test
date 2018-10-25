@@ -1,30 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>APP下载推荐页</title>
     <style>
-        *{
+        * {
             padding: 0;
             margin: 0;
             word-break: break-all;
         }
-        #app{
+
+        #app {
             width: 500px;
             height: 500px;
             margin: 0 auto;
-            background-color:crimson; 
+            /* background-color: crimson; */
         }
-        #app img{
+
+        #app img {
             width: 100%;
         }
     </style>
 </head>
+
 <body>
     <div id="app">
-        <img src="" alt="">
+        <button id="btn" onclick="load()">查看</button>
+        <p id="msg">当前是哪个系统</p>
     </div>
+    <script>
+        var isAndroid;
+        var isIOS;
+        var id;
+
+        function load() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            var u = navigator.userAgent;
+            isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+            isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            var micromessenger = ua.match(/MicroMessenger/i);
+            var weixin = micromessenger == 'micromessenger' ? true : false;
+            // 判断是否是微信内置浏览器
+            if (weixin) {
+                var u = navigator.userAgent;
+                isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+                isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+                if (isAndroid) {
+                    //这个是安卓操作系统
+                    document.getElementById('msg').innerText = '安卓'
+                }
+                if (isIOS) {
+                    //这个是ios操作系统
+                    document.getElementById('msg').innerText = 'ios'
+                }
+                
+            }else{
+                var u = navigator.userAgent;
+                isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+                isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+                if (isAndroid) {
+                    //这个是安卓操作系统
+                    document.getElementById('msg').innerText = '安卓'
+                }
+                if (isIOS) {
+                    //这个是ios操作系统
+                    document.getElementById('msg').innerText = 'ios'
+                }
+            }
+
+
+            // Safari 浏览器跳转IOS下载页
+            if (/webkit/i.test(ua) && !(/chrome/i.test(ua) && /webkit/i.test(ua) && /mozilla/i.test(ua))) {
+
+                document.getElementById('msg').innerText = 'ios'
+                // document.getElementById("down").href = "苹果同事提供下载地址";
+            }
+            if (!weixin) {
+                var src = window.location.href;
+                var I = src.substr(src.indexOf("?id=") + 4).length;
+                var T = src.indexOf("?id=");
+                if (0 >= T) return "";
+                if (I == src.length) return -1;
+                id = src.substr(src.indexOf("?id=") + 4);
+                var test = document.getElementById("test");
+                // 		alert("id =  "+id);  
+                // 		test.href = "dfish://zy.app/openfish?roomid="+id;
+                // 		alert("a标签的href ： "+test.href);
+                test.onclick = openApp("要监听的URL scheme协议");
+            }
+
+        }
+
+        //判断手机上是否安装了app，如果安装直接打开，如果没安装，跳转到下载页面
+        function openApp(url) {
+            if (isAndroid) {
+                var timeout, t = 1000,
+                    hasApp = true;
+                var openScript = setTimeout(function () {
+                    if (!hasApp) {
+                        var durl = "安卓同事提供下载地址";
+                        window.location.href = durl;
+                    }
+                    document.body.removeChild(ifr);
+                }, 2000)
+
+                var t1 = Date.now();
+                var ifr = document.createElement("iframe");
+                ifr.setAttribute('src', url);
+                ifr.setAttribute('style', 'display:none');
+                document.body.appendChild(ifr);
+                timeout = setTimeout(function () {
+                    var t2 = Date.now();
+                    if (!t1 || t2 - t1 < t + 100) {
+                        hasApp = false;
+                    }
+                }, t);
+            }
+            if (isIOS) {
+                document.getElementById("test").href = url;
+                document.getElementById("test").click();
+            }
+
+        }
+    </script>
 </body>
+
 </html>
