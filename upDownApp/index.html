@@ -68,7 +68,7 @@
             }
 
             // Safari 浏览器跳转IOS下载页
-            if (/webkit/i.test(ua) && !(/chrome/i.test(ua) && /webkit/i.test(ua) && /mozilla/i.test(ua))) {
+            if (/webkit/i.test(ua) && !(/chrome/i.test(ua) && /webkit/i.test(ua) && /mozilla/i.test(ua)) && !(u.indexOf('Android') > -1) ) {
                 alert('3'+u)
                 document.getElementById('msg').innerText = '3'+u
                 // document.getElementById("down").href = "苹果同事提供下载地址";
