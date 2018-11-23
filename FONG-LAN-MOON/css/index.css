@@ -388,7 +388,8 @@ li {
   margin-right: 0;
 }
 .f-item-9 {
-  background: url(../image/contactus.png) no-repeat center;
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   height: 34.3rem /* 1372/40 */;
   text-align: center;
