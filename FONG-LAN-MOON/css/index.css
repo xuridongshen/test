@@ -176,7 +176,8 @@ li {
   width: 47.05rem /* 1882/40 */;
   height: 15.2rem /* 608/40 */;
   margin: 0 auto;
-  background: url(../image/img_storegront_a.png) no-repeat center;
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   padding-top: 4.625rem /* 185/40 */;
 }
@@ -285,7 +286,8 @@ li {
   height: 22.55rem /* 902/40 */;
   width: 45.7rem /* 1828/40 */;
   margin: 0 auto;
-  background: url(../image/joining.png) no-repeat center;
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
   margin-bottom: 0.375rem /* 15/40 */;
 }
