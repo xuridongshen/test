@@ -13,9 +13,11 @@ li{
     list-style: none;
 }
 .banner{
-    background: url(../image/Top_banner.png) no-repeat center;
-    background-size: cover;
     height: 23.575rem /* 943/40 */;
+    img{
+        width: 100%;
+        height: 100%;
+    }
 }
 .f-item-1{
     height: 18.6rem /* 744/40 */;
@@ -74,13 +76,22 @@ li{
         }
         .left{
             float: left;
-            background: url(../image/img_dishes_a.png) no-repeat center;
-            background-size: cover;
+            img{
+                width: 100%;
+                height: 100%;
+            }
         }
         .center{
             display: inline-block;
-            background: url(../image/img_dishes_b.png) no-repeat center;
-            background-size: cover;
+            position: relative;
+            >img{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            }
             .center-box{
                 width: 11.75rem /* 470/40 */;
                 height: 5.95rem /* 238/40 */;
@@ -95,8 +106,10 @@ li{
         }
         .right{
             float: right;
-            background: url(../image/img_dishes_c.png) no-repeat center;
-            background-size: cover;
+            img{
+                width: 100%;
+                height: 100%;
+            }
         }
     }
 }
@@ -172,9 +185,16 @@ li{
     width: 47.05rem /* 1882/40 */;
     height: 15.2rem /* 608/40 */;
     margin: 0 auto;
-    background: url(../image/img_storegront_a.png) no-repeat center;
-    background-size: cover;
     padding-top: 4.625rem /* 185/40 */;
+    position: relative;
+    >img{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
     .center-box{
         width: 11.75rem /* 470/40 */;
         height: 5.95rem /* 238/40 */;
@@ -221,6 +241,10 @@ li{
                 display: inline-block;
                 width: 7.35rem /* 294/40 */;
                 height: 100%;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
             }
             .right{
                 float: right;
@@ -258,38 +282,12 @@ li{
         .f-item-5-2, .f-item-5-4{
             float: right;
         }
-        .f-item-5-1{
-            .left{
-                background: url(../image/img_NEWs_a.png) no-repeat center;
-                background-size: cover;
-            }
-        }
-        .f-item-5-2{
-            .left{
-                background: url(../image/img_NEWs_b.png) no-repeat center;
-                background-size: cover;
-            }
-        }
-        .f-item-5-3{
-            .left{
-                background: url(../image/img_NEWs_c.png) no-repeat center;
-                background-size: cover;
-            }
-        }
-        .f-item-5-4{
-            .left{
-                background: url(../image/img_NEWs_d.png) no-repeat center;
-                background-size: cover;
-            }
-        }
     }
 }
 .f-item-6{
     height: 22.55rem /* 902/40 */;
     width: 45.7rem /* 1828/40 */;
     margin: 0 auto;
-    background: url(../image/joining.png) no-repeat center;
-    background-size: cover;
     margin-bottom: .375rem /* 15/40 */;
 }
 .f-item-7{
@@ -395,11 +393,18 @@ li{
     }
 }
 .f-item-9{
-    background: url(../image/contactus.png) no-repeat center;
-    background-size: cover;
     height: 34.3rem /* 1372/40 */;
     text-align: center;
     padding-top: 5.075rem /* 203/40 */;
+    position: relative;
+    >img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
     h1{
         font-size: 1.5rem /* 60/40 */;
         color: #FFEFDF;
