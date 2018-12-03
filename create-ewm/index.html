@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style lang="">
+    #myCanvas {
+      /* width: 150px; */
+      /* height: 200px; */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="divOne"></div>
+  <button id="save">下载</button>
+  <canvas id="myCanvas" width="300" height="350">
+    <p>你的浏览器不支持Canvas</p>
+  </canvas>
+</body>
+<script src="./js/jquery.js"></script>
+<script src="./js/jquery.qrcode.min.js"></script>
+<script>
+  var qrcode = $('#divOne').qrcode({
+    text: toUtf8('http://www.gongjuji.net/'),
+    width: 300,
+    height: 300
+  }).hide();
+
+  var _canvas = qrcode.find('canvas').get(0);
+
+  var url = _canvas.toDataURL('image/jpg');
+
+  // $('#imgOne').attr('src', url)
+
+
+  // $('#down').on('click', function () {
+  //   var img = $('#imgOne').attr("src");
+  //   var alink = document.createElement("a");
+  //   alink.href = img;
+  //   alink.download = "测试.png"; // 下载图片的名字
+  //   alink.click();
+
+  // })
+
+
+
+  var canvas1 = document.getElementById("myCanvas");
+  //简单地检测当前浏览器是否支持Canvas对象，以免在一些不支持html5的浏览器中提示语法错误
+  if (canvas1.getContext) {
+    //获取对应的CanvasRenderingContext2D对象(画笔)
+    var ctx1 = canvas1.getContext("2d");
+    // 绘制文字和文字背景
+    juXing(0, 0, 300, 50, '#ccc');
+    //创建新的图片对象
+    var img = new Image();
+    //指定图片的URL
+    img.src = url;
+    //浏览器加载图片完毕后再绘制图片
+    img.onload = function () {
+      //以Canvas画布上的坐标(10,10)为起始点，绘制图像
+      ctx1.drawImage(img, 0, 50);
+    };
+  }
+  // 绘制文字和文字的背景
+  function juXing(startX, startY, width, height, fillStyle) {
+    // title的背景
+    ctx1.moveTo(startX, startY);
+    ctx1.lineTo(startX + width, startY);
+    ctx1.lineTo(startX + width, startY + height);
+    ctx1.lineTo(startX, startY + height);
+    ctx1.closePath();
+    ctx1.fillStyle = fillStyle; //填充颜色
+
+    ctx1.fill(); //填充
+    // title
+    ctx1.fillStyle = '#000'; //文字颜色
+    ctx1.font = "20px 微软雅黑";
+    ctx1.textAlign = "center";
+    ctx1.fillText("hello world", 150, 33);
+    ctx1.fillStyle = '#ccc';
+
+  }
+
+  // 点击下载
+  document.getElementById("save").onclick = function () {
+    downLoad(saveAsPNG(canvas1));
+  }
+
+  // 保存成png格式的图片
+  function saveAsPNG(canvas) {
+    return canvas.toDataURL("image/png");
+  }
+
+  // 保存成jpg格式的图片
+  function saveAsJPG(canvas) {
+    return canvas.toDataURL("image/jpeg");
+  }
+
+  // 保存成bmp格式的图片  目前浏览器支持性不好
+  function saveAsBMP(canvas) {
+    return canvas.toDataURL("image/bmp");
+  }
+
+  // 下载
+  function downLoad(url) {
+    var oA = document.createElement("a");
+    oA.download = ''; // 设置下载的文件名，默认是'下载'
+    oA.href = url;
+    document.body.appendChild(oA);
+    oA.click();
+    oA.remove(); // 下载之后把创建的元素删除
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  function toUtf8(str) {
+    var out, i, len, c;
+    out = "";
+    len = str.length;
+    for (i = 0; i < len; i++) {
+      c = str.charCodeAt(i);
+      if ((c >= 0x0001) && (c <= 0x007F)) {
+        out += str.charAt(i);
+      } else if (c > 0x07FF) {
+        out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+        out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
+        out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+      } else {
+        out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
+        out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+      }
+    }
+    return out;
+  }
+</script>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>盒模型的使用</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .box {
+            width: 500px;
+            height: 500px;
+            border: 1px solid #ccc8;
+        }
+
+        li {
+            float: left;
+            list-style: none;
+            border: 1px solid transparent;
+            width: 33.33%;
+            padding-top: 33.33%;
+            background: url(./img_dishes_a.png) no-repeat center;
+            background-size: cover;
+        }
+        span{
+            float: left;
+        }
+        ul {
+            margin: 0 auto;
+        }
+
+        ul:after {
+            content: "";
+            display: block;
+            clear: both;
+            overflow: hidden;
+            height: 0;
+        }
+        .img{
+            width: 1920px;
+            height: 943px;
+            background: url(./Top_banner.png) no-repeat center;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img">
+
+    </div>
+    <div class="box">
+        <ul>
+            <li>
+                <span>1</span>
+            </li>
+            <li>
+                <span>1</span>
+            </li>
+            <li>
+                <span>1</span>
+            </li>
+        </ul>
+    </div>
+    
+</body>
+
+</html>

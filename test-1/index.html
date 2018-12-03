@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>test-1</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            /* height: 100%; */
+        }
+
+        body {
+            margin: 0 auto;
+            /* display: flex; */
+            /* justify-content: center; */
+            /* align-items: center; */
+            /* background: #5f81ff; */
+        }
+
+        @media screen and (max-width: 320px) {
+            html {
+                font-size: 42.667px;
+                font-size: -webkit-calc(13.33333333vw);
+                font-size: calc(13.33333333vw);
+            }
+        }
+
+        @media screen and (min-width: 321px) and (max-width: 360px) {
+            html {
+                font-size: 48px;
+                font-size: -webkit-calc(13.33333333vw);
+                font-size: calc(13.33333333vw);
+            }
+        }
+
+        @media screen and (min-width: 361px) and (max-width: 375px) {
+            html {
+                font-size: 50px;
+                font-size: -webkit-calc(13.33333333vw);
+                font-size: calc(13.33333333vw);
+            }
+        }
+
+        @media screen and (min-width: 376px) and (max-width: 393px) {
+            html {
+                font-size: 52.4px;
+                font-size: -webkit-calc(13.33333333vw);
+                font-size: calc(13.33333333vw);
+            }
+        }
+
+        @media screen and (min-width: 394px) and (max-width: 412px) {
+            html {
+                font-size: 54.93px;
+                font-size: -webkit-calc(13.33333333vw);
+                font-size: calc(13.33333333vw);
+            }
+        }
+
+        @media screen and (min-width: 413px) and (max-width: 414px) {
+            html {
+                font-size: 55.2px;
+                font-size: -webkit-calc(13.33333333vw);
+                font-size: calc(13.33333333vw);
+            }
+        }
+
+        @media screen and (min-width: 415px) and (max-width: 480px) {
+            html {
+                font-size: 64px;
+                font-size: -webkit-calc(13.33333333vw);
+                font-size: calc(13.33333333vw);
+            }
+        }
+
+        @media screen and (min-width: 481px) and (max-width: 540px) {
+            html {
+                font-size: 72px;
+                font-size: -webkit-calc(13.33333333vw);
+                font-size: calc(13.33333333vw);
+            }
+        }
+
+        @media screen and (min-width: 541px) and (max-width: 640px) {
+            html {
+                font-size: 85.33px;
+                font-size: -webkit-calc(13.33333333vw);
+                font-size: calc(13.33333333vw);
+            }
+        }
+
+        @media screen and (min-width: 641px) and (max-width: 720px) {
+            html {
+                font-size: 96px;
+                font-size: -webkit-calc(13.33333333vw);
+                font-size: calc(13.33333333vw);
+            }
+        }
+
+        @media screen and (min-width: 721px) and (max-width: 768px) {
+            html {
+                font-size: 102.4px;
+                font-size: -webkit-calc(13.33333333vw);
+                font-size: calc(13.33333333vw);
+            }
+        }
+
+        @media screen and (min-width: 769px) {
+            html {
+                font-size: 102.4px;
+                font-size: -webkit-calc(13.33333333vw);
+                font-size: calc(13.33333333vw);
+            }
+        }
+
+        @media screen and (min-width: 769px) {
+            html {
+                font-size: 102.4px;
+            }
+
+            body {
+                width: 768px;
+            }
+        }
+
+        .div {
+            display: flex;
+            width: 500px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .span {
+            text-align: center;
+            justify-content: center;
+            font-size: 1rem;
+            padding: 1rem;
+            width: 100%;
+            border: 1px dashed #fff;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        nav {
+            width: 100%;
+            height: 0.72rem;
+            background: #5f81ff;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+      <div class="swiper-container">
+        <div class="swiper">
+          <div class="swiper-slide"></div>
+          <div class="swiper-slide"></div>
+          <div class="swiper-slide"></div>
+        </div>
+      </div>
+    -->
+
+    <!--  <div class="div">
+        <div class="span">红</div>
+        <div class="span">绿</div>
+        <div class="span">蓝</div>
+    </div>-->
+
+    <nav>
+
+    </nav>
+
+</body>
+<script>
+    function People(name, age, desc) {
+        this.getName = function () {
+            return name;
+        };
+        this.setName = function (data) {
+            name = data;
+        };
+        this.getAge = function () {
+            return age;
+        };
+        this.setAge = function (data) {
+            age = data;
+        };
+        this.getDesc = function () {
+            return desc;
+        };
+        this.setDesc = function (data) {
+            desc = data;
+        };
+    }
+
+    var Mrs_li = new People();
+    Mrs_li.setName('李');
+    Mrs_li.setAge('16');
+    Mrs_li.setDesc('我是小李');
+    var Mrs_zhang = new People();
+    var Mrs_wang = new People();
+
+    console.log(Mrs_li.getName());
+    console.log(Mrs_li.getAge());
+    console.log(Mrs_li.getDesc());
+    // console.log(Mrs_zhang.getName());
+    // console.log(Mrs_wang.getName());
+
+    var arr = ['1', '2', '3'];
+    var str = '123';
+    console.log(typeof arr);
+    console.log(arr instanceof Array);
+    console.log(arr.constructor === Array);
+    console.log('-------');
+
+    console.log(typeof str);
+    console.log(str instanceof Number);
+    console.log(arr.constructor === Number);
+    console.log('------------');
+
+    var arr1 = [12, 548, 'a', 2, 5478, 'foo', 8852, 'yuan', 'Doe', 2145, 119];
+    var random = Math.floor(Math.random() * arr1.length);
+    var randomArr1Value = arr1[random];
+
+    console.log(random);
+    console.log(randomArr1Value);
+    console.log('------------');
+
+    var max = 100,
+        min = 50;
+    var x = Math.floor(Math.random() * (max - min + 1)) + min;
+    console.log(x);
+</script>
+<script>
+    // var div = document.querySelector('.div');
+    // var spans = document.querySelectorAll('.span');
+
+    // div.addEventListener('click', function () {
+    //     console.log(this);
+    // }, false);
+
+    // for (var i = 0, len = spans.length; i < len; i++) {
+
+    //     var el = spans[i];
+    //     el.onclick = function (e) {
+    //         e.stopPropagation();
+    //         console.log(this.innerHTML);
+    //     };
+    // }
+</script>
+
+</html>

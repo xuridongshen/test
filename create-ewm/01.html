@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style lang="">
+    #my {
+      width: 200px;
+      height: 150px;
+      background: #ccc8;
+      margin: 0 auto;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="my"></canvas>
+</body>
+<script>
+  var can = document.getElementById('my');
+  var draw = can.getContext('2d');
+  var text = '使用canvas创建';
+  var a = draw.measureText(text);
+  var width = a.width;
+  draw.beginPath();
+  draw.font = "normal 20px arial"
+  draw.textAlign = 'center'
+  draw.fillStyle = '#00f';
+  draw.fillText(text, 0, 50);
+  draw.font = "normal 30px arial"
+  draw.fillStyle = '#f00';
+  draw.fillText('文字长度为' + width + 'px', 50, 100);
+</script>
+
+</html>

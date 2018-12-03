@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <!--<link rel="stylesheet" type="text/css" href="http://static.battcn.com/back/css/bootstrap.min.css?v=3.3.5"/>-->
+    <link rel="stylesheet" type="text/css" href="/hongkongmovie-background/resource/back/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/hongkongmovie-background/oss/style.css">
+    <style>
+        #_form{
+            width: 600px;
+            margin: 0 auto;
+        }
+        label{
+            
+        }
+    </style>
+    <script type="text/javascript" src="/hongkongmovie-background/js/jquery-1.9.1.min.js"></script>
+    <!--<script type="text/javascript" src="http://static.battcn.com/back/js/bootstrap.min.js?v=3.3.5"></script>-->
+    <script type="text/javascript" src="/hongkongmovie-background/resource/back/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/hongkongmovie-background/js/laydate/laydate.js"></script>
+</head>
+
+<body>
+<form id="_form">
+    <div class="form-group">
+        <label for="exampleInputEmail1">广告标题:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="广告标题" name="advertiseTitle">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">展示位置:</label>
+        <div>
+            <label for="advertisePosition_1">
+                <input type="radio" class="form-control" id="advertisePosition_1"  name="advertisePosition" value="0">主页
+            </label>
+            <label for="advertisePosition_2">
+                <input type="radio" class="form-control" id="advertisePosition_2"  name="advertisePosition" value="1">电影列表页
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="advertiseStart">开始时间:</label>
+        <input type="text" class="form-control" id="advertiseStart" placeholder="开始时间" name="advertiseStart">
+    </div>
+    <div class="form-group">
+        <label for="advertiseEnd">失效时间:</label>
+        <input type="text" class="form-control" id="advertiseEnd" placeholder="失效时间" name="advertiseEnd">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">跳转位置:</label>
+        <div>
+            <label for="jumpType_1">
+                <input type="radio" class="form-control" id="jumpType_1"  name="jumpType" value="0">电影详情页
+            </label>
+            <label for="jumpType_2">
+                <input type="radio" class="form-control" id="jumpType_2"  name="jumpType" value="1">文章资讯详情页
+            </label>
+            <label for="jumpType_3">
+                <input type="radio" class="form-control" id="jumpType_3"  name="jumpType" value="2">视频资讯详情页
+            </label>
+            <label for="jumpType_4">
+                <input type="radio" class="form-control" id="jumpType_4" name="jumpType" value="3">电影频道首页
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group" id="jumpIdDiv">
+        <label for="exampleInputEmail1">跳转目标:</label>
+        <select id="jumpSelect" name="jumpId">
+            <option value="1">请选择</option>
+        </select>
+        <input type="hidden" />
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">是否展示:</label>
+        <div>
+            <label for="isHide_1">
+                <input type="radio" class="form-control" id="isHide_1" name="isHide" value="1">
+            </label>
+            <label for="isHide_2">
+                <input type="radio" class="form-control" id="isHide_2" name="isHide" value="0">
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputFile">上传BANNER图片:</label>
+        <div id="ossfile">你的浏览器不支持flash,Silverlight或者HTML5！</div>
+        <br />
+        <div id="container">
+            <a id="selectfiles" href="javascript:void(0);" class='btn'>选择文件</a>
+            <a id="postfiles" href="javascript:void(0);" class='btn'>开始上传</a>
+            <input type="hidden" id="infoType" value="advertise" />
+            <input type="hidden" id="fileType" value="img" />
+        </div>
+        <pre id="console"></pre>
+        <input type="hidden" name="advertiseUrl" id="advertiseUrl" /><br>
+        <img id="uploadImg" src="" />
+        <input type="hidden" name="id" />
+    </div>
+
+    <!-- <div class="checkbox">
+        <label>
+            <input type="checkbox"> Check me out
+        </label>
+    </div> -->
+    <button id="btn_commit" type="button">确认</button>
+    <input type="button" value="取消" onclick="javascript:window.location.href='/hongkongmovie-background/index'" />
+</form>
+
+
+<script src="/hongkongmovie-background/oss/lib/plupload-2.1.2/js/plupload.full.min.js"></script>
+<script src="/hongkongmovie-background/oss/advertise-upload.js"></script>
+<script>
+    //<![CDATA[
+    laydate.render({
+        elem: '#advertiseEnd',
+        type: 'datetime'
+    });
+    laydate.render({
+        elem: '#advertiseStart',
+        type: 'datetime'
+    });
+
+
+    $(function () {
+
+        if ($("input[name='jumpType'][checked]").val() == 3) {
+            $("#jumpIdDiv").hide();
+        }
+
+        $('input[type=radio][name=jumpType]').change(function () {
+            if (this.value == '3') {
+                $("#jumpIdDiv").hide();
+            } else {
+                $("#jumpIdDiv").show();
+                $("option").remove();
+                if (this.value == '0') {
+                    $.ajax({
+                        type: "GET",
+                        dataType: "json",
+                        contentType: 'application/json;charset=utf-8',
+                        url: "/hongkongmovie-background/sys/movie/query",
+                        data: /*JSON.stringify()*/ {
+                            "pageNum": 0,
+                            "pageSize": 999999,
+                            "appLanguage": 0
+                        },
+                        success: function (json) {
+                            console.log(json);
+                            if (json.messageId == 200) {
+                                console.log(json.data.rows);
+                                $.each(json.data.rows, function (index, val) {
+                                    $("#jumpSelect").append("<option value='" +
+                                        val.id + "'>" + val.mName +
+                                        "</option>");
+                                });
+                            }
+                        }
+                    });
+                } else if (this.value == '1') {
+                    $.ajax({
+                        type: "GET",
+                        dataType: "json",
+                        contentType: 'application/json;charset=utf-8',
+                        url: "/hongkongmovie-background/sys/information/query",
+                        data: /*JSON.stringify()*/ {
+                            "pageNum": 0,
+                            "pageSize": 999999,
+                            "infoType": 1
+                        },
+                        success: function (json) {
+                            if (json.messageId == 200) {
+                                console.log(json.data.rows);
+                                $.each(json.data.rows, function (index, val) {
+                                    $("#jumpSelect").append("<option value='" +
+                                        val.id + "'>" + val.infoTitle +
+                                        "</option>");
+                                });
+                            }
+                        }
+                    });
+                } else if (this.value == '2') {
+                    $.ajax({
+                        type: "GET",
+                        dataType: "json",
+                        contentType: 'application/json;charset=utf-8',
+                        url: "/hongkongmovie-background/sys/information/query",
+                        data: /*JSON.stringify()*/ {
+                            "pageNum": 0,
+                            "pageSize": 999999,
+                            "infoType": 2
+                        },
+                        success: function (json) {
+                            console.log(json);
+                            if (json.messageId == 200) {
+                                console.log(json.data.rows);
+                                $.each(json.data.rows, function (index, val) {
+                                    $("#jumpSelect").append("<option value='" +
+                                        val.id + "'>" + val.infoTitle +
+                                        "</option>");
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    function isNotNull(param) {
+        if (param == '' || param == undefined || param == null) {
+            return false;
+        }
+        return true;
+    }
+
+    $.fn.serializeObject = function () {
+        var obj = new Object();
+        $.each(this.serializeArray(), function (index, param) {
+            if (!(param.name in obj)) {
+                if (isNotNull(param.value)) {
+                    obj[param.name] = param.value;
+                } else {
+                    obj[param.name] = null;
+                }
+            }
+        });
+        return obj;
+    };
+    //提交
+    $("#btn_commit").click(function (e) {
+        // set_upload_param(uploader, '', false);
+        var params = $("form[name=editForm]").serializeObject();
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json;charset=utf-8',
+            url: "/hongkongmovie-background/sys/advertisement/insertAdverstise",
+            data: JSON.stringify(params),
+            success: function (json) {
+                console.log(json);
+                if (json.message == '操作成功') {
+                    window.location.href = "/hongkongmovie-background/index"
+                }
+            }
+        });
+        return false;
+    });
+    //]]>
+</script>
+</body>
+
+</html>
