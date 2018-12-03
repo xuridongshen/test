@@ -1,2 +1,1 @@
 (window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["shopping"],{fdaa:function(n,e,t){"use strict";t.r(e);var s=function(){var n=this,e=n.$createElement;n._self._c;return n._m(0)},i=[function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("div",{staticClass:"shopping"},[t("h1",[n._v("商城页面")])])}],a=t("2877"),l={},o=Object(a["a"])(l,s,i,!1,null,null,null);o.options.__file="shopping.vue";e["default"]=o.exports}}]);
-//# sourceMappingURL=shopping.903a731a.js.map

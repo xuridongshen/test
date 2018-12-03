@@ -1,2 +1,1 @@
 (window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["DownLoad"],{6225:function(n,e,t){"use strict";t.r(e);var o=function(){var n=this,e=n.$createElement;n._self._c;return n._m(0)},s=[function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("div",{staticClass:"down"},[t("h1",[n._v("下载页面")])])}],a=t("2877"),l={},c=Object(a["a"])(l,o,s,!1,null,null,null);c.options.__file="DownLoad.vue";e["default"]=c.exports}}]);
-//# sourceMappingURL=DownLoad.4d1f8716.js.map
